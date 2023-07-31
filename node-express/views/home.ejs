@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>home模版页</div>
+    <%- include('./header.ejs',{isShowTitle:true}) %>
+    <div>
+        <ul>
+            <li>用于显示流程控制标签 如if else,for</li>
+            <% for(let i=0;i<list.length;i++){ %>
+                <li><%= list[i] %></li>
+            <% } %>
+        </ul>
+        <div> 输出标签（原文输出HTML标签）--<%= htmlStr %> </div>
+        <div> 输出标签（HTML标签会被浏览器解析）--<%- htmlStr %> </div>
+        <%# 注释标签（不会显示在浏览器代码中） %>
+    </div>
+</body>
+</html>
