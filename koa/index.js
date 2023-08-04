@@ -1,11 +1,7 @@
 const Koa = require('koa')
-const Router = require('koa-router')
-
-const userRouter = require('./routes/user.js')
-const listRouter = require('./routes/list.js')
+const router = require('./routes')
 
 const app = new Koa()
-const router = new Router()
 
 // //增
 // router.post('/list', (ctx, next) => [
@@ -35,11 +31,8 @@ const router = new Router()
 
 //或者简写写成以下链式调用
 
-//先注册路由级组件
-router.use('/user', userRouter.routes(), userRouter.allowedMethods())
-router.use('/list', listRouter.routes(), listRouter.allowedMethods())
 
-//应用级组件
+//应用级中间件
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000)
