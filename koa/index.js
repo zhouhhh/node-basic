@@ -1,6 +1,9 @@
 const Koa = require('koa')
 const Router = require('koa-router')
 
+const userRouter = require('./routes/user.js')
+const listRouter = require('./routes/list.js')
+
 const app = new Koa()
 const router = new Router()
 
@@ -31,30 +34,12 @@ const router = new Router()
 // ])
 
 //或者简写写成以下链式调用
-//增
-router.post('/list', (ctx, next) => [
-    ctx.body = {
-        ok: 1,
-        info: 'add success'
-    }
-])
-    .get('/list', (ctx, next) => [
-        ctx.body = ['111', '222', '333']
-    ])
-    .put('/list/:id', (ctx, next) => {
-        console.log('获取参数', ctx.params);
-        ctx.body = {
-            ok: 1,
-            info: 'put success'
-        }
-    })
-    .del('/list/:id', (ctx, next) => [
-        ctx.body = {
-            ok: 1,
-            info: 'delete success'
-        }
-    ])
 
+//先注册路由级组件
+router.use('/user', userRouter.routes(), userRouter.allowedMethods())
+router.use('/list', listRouter.routes(), listRouter.allowedMethods())
+
+//应用级组件
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000)
