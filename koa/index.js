@@ -1,11 +1,14 @@
 const Koa = require('koa')
-const router = require('./routes')
 
 const app = new Koa()
 const static = require('koa-static')
 const path = require('path')
+const bodyParser = require('koa-bodyparser')
+
+const router = require('./routes')
 
 //应用级中间件
+app.use(bodyParser())//获取post参数
 app.use(static(path.join(__dirname, 'public')))
 app.use(router.routes()).use(router.allowedMethods())
 
