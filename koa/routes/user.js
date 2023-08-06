@@ -28,5 +28,22 @@ router.post('/', (ctx, next) => {
             info: 'delete user success'
         }
     ])
+    .post('/login', (ctx, next) => {
+        console.log(ctx.request.body);
+        const { username, password } = ctx.request.body
+        if (username === 'zhouhang' && password === '111') {
+            //设置sessionId
+            ctx.session.user = {
+                username: username
+            }
+            ctx.body = {
+                ok: 1,
+            }
+        } else {
+            ctx.body = {
+                ok: 0,
+            }
+        }
+    })
 
 module.exports = router

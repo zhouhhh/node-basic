@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>login模版</title>
+	</head>
+	<body>
+		<div>
+			<div>
+				用户名：<input
+					type="text"
+					id="username"
+				/>
+			</div>
+			<div>
+				密码：<input
+					type="password"
+					id="password"
+				/>
+			</div>
+			<div><button id="loginpost">post登录</button></div>
+		</div>
+		<script>
+			const ologinpost = document.querySelector('#loginpost');
+			const username = document.querySelector('#username');
+			const password = document.querySelector('#password');
+
+			ologinpost.onclick = () => {
+				//post请求
+				fetch(`/user/login`, {
+					method: 'POST',
+					// body: JSON.stringify({ //传json格式的参数
+					//     username: username.value,
+					//     password: password.value
+					// }),
+					body: `username=${username.value}&password=${password.value}`, //传form格式的参数
+					headers: {
+						// 'Content-type': 'application/json'//json格式
+						'Content-type': 'application/x-www-form-urlencoded', //json格式
+					},
+				})
+					.then((res) => res.json())
+					.then((res) => {
+						if (res.ok === 1) {
+							location.href = '/home';
+						} else {
+							alert('登录错误');
+						}
+					});
+			};
+		</script>
+	</body>
+</html>
