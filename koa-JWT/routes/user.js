@@ -1,5 +1,9 @@
 const Router = require('koa-router');
 const JWT = require('../utils/JTW');
+
+const multer = require('@koa/multer');
+const upload = multer({ dest: 'public/uploads' })
+
 const router = new Router()
 
 //增
@@ -37,7 +41,7 @@ router.post('/', (ctx, next) => {
             const token = JWT.generate({
                 _id: 'zhh',
                 username: username
-            }, "10s")
+            }, "1d")
             ctx.set("Authorization", token)//将token设置到响应头
 
             ctx.session.user = {
@@ -50,6 +54,12 @@ router.post('/', (ctx, next) => {
             ctx.body = {
                 ok: 0,
             }
+        }
+    })
+    .post('/upload', upload.single('avatar'), (ctx, next) => {//上传接口
+        console.log(ctx.request.body, ctx.file);
+        ctx.body = {
+            ok: 1,
         }
     })
 

@@ -38,7 +38,7 @@ app.use(async (ctx, next) => {
             const newToken = JWT.generate({
                 _id: payload._id,
                 username: payload.username
-            }, "10s")
+            }, "1d")
             ctx.set("Authorization", newToken)
 
             await next()
