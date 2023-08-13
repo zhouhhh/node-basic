@@ -10,6 +10,9 @@ const session = require('koa-session-minimal')
 const router = require('./routes')
 const JWT = require('./utils/JTW')
 
+//数据库的连接
+require('./config/db.config')
+
 //应用级中间件
 app.use(bodyParser())//获取post参数
 app.use(static(path.join(__dirname, 'public')))//静态资源
