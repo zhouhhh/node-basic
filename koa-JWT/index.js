@@ -10,6 +10,10 @@ const session = require('koa-session-minimal')
 const router = require('./routes')
 const JWT = require('./utils/JTW')
 
+//配置环境变量
+const dotenv = require('dotenv');
+dotenv.config('./env');
+
 //数据库的连接
 require('./config/db.config')
 
