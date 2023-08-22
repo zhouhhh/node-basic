@@ -11,7 +11,7 @@ const assert = require('assert')
 describe('大组1测试', () => {
     describe('小组1测试', () => {
         it('sum() 结果返回0', () => {
-            assert.strictEqual(sum(), 10)
+            assert.strictEqual(sum(), 0)
         })
         it('sum(1) 结果返回1', () => {
             assert.strictEqual(sum(1), 1)
