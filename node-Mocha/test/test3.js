@@ -1,11 +1,9 @@
 const chai = require('chai')
-const assert = chai.assert
+chai.should()
 
-describe('chai assert Demo', () => {
-    it('use assert lib', () => {
-        const value = 'hello world'
-        assert.typeOf(value, 'string')
-        assert.equal(value, 'hello world')
-        assert.lengthOf(value, 11)
+describe('chai should Demo', () => {
+    it('use should lib', () => {
+        const value = 'hello'
+        value.should.exist.and.equal('hello').and.have.length(5).and.be.a('string')
     })
 })
